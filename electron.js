@@ -21,6 +21,11 @@ autoUpdater.on('update-downloaded', (info) => {
     win.webContents.send('updateReady')
 });
 
+// when the update is available and is ready to be downloaded, notify the BrowserWindow
+autoUpdater.on('update-available', (info) => {
+    win.webContents.send('updateAvailable')
+});
+
 // when receiving a quitAndInstall signal, quit and install the new version ;)
 ipcMain.on("quitAndInstall", (event, arg) => {
     autoUpdater.quitAndInstall();
