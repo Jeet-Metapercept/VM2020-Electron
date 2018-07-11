@@ -32,7 +32,8 @@ autoUpdater.on('download-progress', (progressObj) => {
   log_message = log_message + ' - Downloaded ' + progressObj.percent + '%';
   log_message = log_message + ' (' + progressObj.transferred + "/" + progressObj.total + ')';
   //sendStatusToWindow(log_message);
-  win.webContents.send(log_message)
+  win.webContents.send('Downloading', log_message);
+  //win.webContents.send(log_message);
 })
 
 // when the update is not available and nothing to be downloaded, notify the BrowserWindow

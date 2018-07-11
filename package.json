@@ -1,6 +1,6 @@
 {
   "name": "VM2020",
-  "version": "0.2.6",
+  "version": "0.2.7",
   "author": "Jeet",
   "homepage": "./",
   "description": "An example of an autoupdating electron app",

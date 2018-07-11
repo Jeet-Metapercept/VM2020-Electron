@@ -28,9 +28,9 @@
         })
 		
 		// wait for an updateNotAvailable message
-        ipcRenderer.on(log_message , function(event, text) {
+        ipcRenderer.on('Downloading' , function(event, text) {
             // changes the text
-            var dlprocess = document.getElementById('check');
+            var dlprocess = document.getElementById('dlprocess');
             dlprocess.innerHTML = log_message;
         })
     </script>
@@ -40,16 +40,16 @@
     Chromium <script>document.write(process.versions.chrome)</script>,
     and Electron <script>document.write(process.versions.electron)</script>.
 
-	<div style="position:absolute; right:50%; bottom: 5%">
-    Process: <span id="dlprocess"></span>
+	<div style="position:absolute; right:60%; bottom: 5%">
+    process: <span id="dlprocess"></span>
 	</div>
 	
 	<div style="position:absolute; left:2%; bottom: 2%">
-    Version: <span id="version">v 0.2.6</span>
+    Version: <span id="version">v 0.2.7</span>
 	</div>
 	
 	
-	<div style="position:absolute; right:50%; bottom: 2%">
+	<div style="position:absolute; right:60%; bottom: 2%">
     <span id="check">not available</span>
 	</div>
 	
