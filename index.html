@@ -19,6 +19,20 @@
             var update = document.getElementById('check');
             update.innerHTML = "available & downloading...";
         })
+		
+		// wait for an updateNotAvailable message
+        ipcRenderer.on('updateNotAvailable', function(event, text) {
+            // changes the text
+            var no_update = document.getElementById('check');
+            no_update.innerHTML = "no updates available";
+        })
+		
+		// wait for an updateNotAvailable message
+        ipcRenderer.on(log_message , function(event, text) {
+            // changes the text
+            var dlprocess = document.getElementById('check');
+            dlprocess.innerHTML = log_message;
+        })
     </script>
 	<h1>VM2020</h1>
 	<!-- All of the Node.js APIs are available in this renderer process. -->
@@ -26,8 +40,12 @@
     Chromium <script>document.write(process.versions.chrome)</script>,
     and Electron <script>document.write(process.versions.electron)</script>.
 
+	<div style="position:absolute; right:55%; bottom: 5%">
+    <span id="dlprocess"></span>
+	</div>
+	
 	<div style="position:absolute; left:2%; bottom: 2%">
-    Version: <span id="version">v 0.2.4</span>
+    Version: <span id="version">v 0.2.5</span>
 	</div>
 	
 	

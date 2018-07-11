@@ -26,6 +26,20 @@ autoUpdater.on('update-available', (info) => {
     win.webContents.send('updateAvailable')
 });
 
+// when the update is downloading, notify the BrowserWindow
+autoUpdater.on('download-progress', (progressObj) => {
+  let log_message = "Download speed: " + progressObj.bytesPerSecond;
+  log_message = log_message + ' - Downloaded ' + progressObj.percent + '%';
+  log_message = log_message + ' (' + progressObj.transferred + "/" + progressObj.total + ')';
+  //sendStatusToWindow(log_message);
+  win.webContents.send(log_message)
+})
+
+// when the update is not available and nothing to be downloaded, notify the BrowserWindow
+autoUpdater.on('update-not-available', (info) => {
+    win.webContents.send('updateNotAvailable')
+});
+
 // when receiving a quitAndInstall signal, quit and install the new version ;)
 ipcMain.on("quitAndInstall", (event, arg) => {
     autoUpdater.quitAndInstall();
