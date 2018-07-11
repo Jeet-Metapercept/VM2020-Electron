@@ -2,6 +2,10 @@ const {app, BrowserWindow, ipcMain} = require('electron');
 const {autoUpdater} = require("electron-updater");
 let win; // this will store the window object
 
+function sendStatusToWindow(text) {
+  win.webContents.send('message', text);
+}
+
 // creates the default window
 function createDefaultWindow() {
     win = new BrowserWindow({width: 900, height: 680});
@@ -26,14 +30,12 @@ autoUpdater.on('update-available', (info) => {
     win.webContents.send('updateAvailable')
 });
 
-// when the update is downloading, notify the BrowserWindow
+// when update downloading, show process
 autoUpdater.on('download-progress', (progressObj) => {
   let log_message = "Download speed: " + progressObj.bytesPerSecond;
   log_message = log_message + ' - Downloaded ' + progressObj.percent + '%';
   log_message = log_message + ' (' + progressObj.transferred + "/" + progressObj.total + ')';
-  //sendStatusToWindow(log_message);
-  win.webContents.send('Downloading', log_message);
-  //win.webContents.send(log_message);
+  sendStatusToWindow(log_message);
 })
 
 // when the update is not available and nothing to be downloaded, notify the BrowserWindow

@@ -12,6 +12,8 @@
             // changes the text of the button
             var container = document.getElementById('ready');
             container.innerHTML = "new version ready!";
+			var update = document.getElementById('check');
+            update.innerHTML = "update download complete";
         })
 		// wait for an updateAvailable message
         ipcRenderer.on('updateAvailable', function(event, text) {
@@ -27,12 +29,13 @@
             no_update.innerHTML = "no updates available";
         })
 		
-		// wait for an updateNotAvailable message
-        ipcRenderer.on('Downloading' , function(event, text) {
-            // changes the text
-            var dlprocess = document.getElementById('dlprocess');
-            dlprocess.innerHTML = log_message;
-        })
+		// Listen for messages
+		ipcRenderer.on('message', function(event, text) {
+		  var container = document.getElementById('messages');
+		  var message = document.createElement('div');
+		  message.innerHTML = text;
+		  container.appendChild(message);
+		})
     </script>
 	<h1>VM2020</h1>
 	<!-- All of the Node.js APIs are available in this renderer process. -->
@@ -41,11 +44,11 @@
     and Electron <script>document.write(process.versions.electron)</script>.
 
 	<div style="position:absolute; right:60%; bottom: 5%">
-    process: <span id="dlprocess"></span>
+    <div id="messages"></div>
 	</div>
 	
 	<div style="position:absolute; left:2%; bottom: 2%">
-    Version: <span id="version">v 0.2.7</span>
+    Version: <span id="version">v 0.2.8</span>
 	</div>
 	
 	
