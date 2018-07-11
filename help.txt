@@ -1,0 +1,17 @@
+Steps to follow
+
+- build your app, 
+for starter refer - https://medium.freecodecamp.org/quick-painless-automatic-updates-in-electron-d993d5408b3a 
+
+- make sure to add your own repo-url into package.json repository
+
+- replace your personal github token with "repo" check into electron-builder.yml, afterwards you dont need to change/revoke/replace/regenerate the token.
+
+- update your app, update your package.json version (eg: 0.0.1 to 0.0.2).
+
+- git push your updates
+
+- command - npm run ship, it will make a draft release in your releases, publish the release
+
+- restart your app, auto updates!  - good luck!
+
