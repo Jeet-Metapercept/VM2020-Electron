@@ -31,10 +31,10 @@
 		
 		// Listen for messages
 		ipcRenderer.on('message', function(event, text) {
-		  var container = document.getElementById('messages');
-		  var message = document.createElement('div');
-		  message.innerHTML = text;
-		  container.appendChild(message);
+		  var process_container = document.getElementById('messages');
+		  //var message = document.createElement('div');
+		  process_container.innerHTML = text;
+		 // container.appendChild(message);
 		})
     </script>
 	<h1>VM2020</h1>
@@ -45,16 +45,16 @@
 	<br><br><br>
 	<img src="https://media.tenor.com/images/d02f68f2b8785baa2e72115dec9bceed/tenor.gif"/>
 	
-	<div style="position:absolute; right:60%; bottom: 5%">
+	<div style="position:absolute; right:40%; bottom: 5%">
     <div id="messages"></div>
 	</div>
 	
 	<div style="position:absolute; left:2%; bottom: 2%">
-    Version: <span id="version">v 0.2.9</span>
+    Version: <span id="version">v 0.3.0</span>
 	</div>
 	
 	
-	<div style="position:absolute; right:60%; bottom: 2%">
+	<div style="position:absolute; right:40%; bottom: 2%">
     <span id="check">not available</span>
 	</div>
 	
