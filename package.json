@@ -1,12 +1,14 @@
 {
   "name": "VM2020",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "author": "Jeet",
   "homepage": "./",
   "description": "An example of an autoupdating electron app",
   "repository": "https://github.com/Jeet-Metapercept/VM2020-Electron",
   "main": "electron.js",
   "dependencies": {
+    "electron-titlebar": "0.0.3",
+    "electron-titlebar-windows": "^3.0.0",
     "electron-updater": "^2.23.3"
   },
   "scripts": {

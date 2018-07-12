@@ -2,13 +2,26 @@ const {app, BrowserWindow, ipcMain} = require('electron');
 const {autoUpdater} = require("electron-updater");
 let win; // this will store the window object
 
+//For Titlebar
+const ElectronTitlebarWindows = require('electron-titlebar-windows');
+	
 function sendStatusToWindow(text) {
   win.webContents.send('message', text);
 }
 
 // creates the default window
 function createDefaultWindow() {
-    win = new BrowserWindow({width: 900, height: 680});
+    win = new BrowserWindow({
+	width: 900,
+	height: 680,
+    minWidth: 800,
+    minHeight: 600,
+	frame: false,
+    backgroundColor: '#fafafa',
+    //show: false,
+    //icon: path.join(__dirname, 'assets/icons/png/64x64.png')
+	});
+
     win.loadURL(`file://${__dirname}/index.html`);
     win.on('closed', () => app.quit());
   return win;
