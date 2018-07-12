@@ -7,7 +7,6 @@
   "repository": "https://github.com/Jeet-Metapercept/VM2020-Electron",
   "main": "electron.js",
   "dependencies": {
-    "electron-titlebar": "0.0.3",
     "electron-titlebar-windows": "^3.0.0",
     "electron-updater": "^2.23.3"
   },
