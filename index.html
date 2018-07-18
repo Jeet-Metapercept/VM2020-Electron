@@ -1,58 +1,71 @@
-<!DOCTYPE html>
 <html>
+
 <head>
-    <title>Electron Updates</title>
-	<meta charset="utf-8"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <meta name="description" content=""/>
-    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
-	
-    <!-- build:css assets/css/* -->
-     <link rel="stylesheet" href="scripts/css/style.css" />
-	 <link rel="stylesheet" href="scripts/css/helpers.css" />
-	 <link rel="stylesheet" href="node_modules/xel/themes/macos.css">
-	 <!-- <link rel="stylesheet" href="node_modules/xel/themes/material.css"> -->
-	 <!-- <link rel="stylesheet" href="node_modules/xel/themes/vanilla.css"> -->
-    <!-- endbuild -->	
-	
-		<!-- build:js scripts/vendor.js -->
-        <script src="bower_components/angular/angular.js"></script>
-        <script src="bower_components/angular-resource/angular-resource.js"></script>
-        <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
-        <script src="bower_components/angular-route/angular-route.js"></script>
-        <script src="bower_components/angular-animate/angular-animate.js"></script>
-        <script src="bower_components/angular-aria/angular-aria.js"></script>
-        <script src="bower_components/angular-material/angular-material.js"></script>
-		
-		<script src="node_modules/xel/xel.min.js"></script>	
-		<script src="node_modules/prismjs/prism.js"></script>	
-		<!-- endbuild -->
-	
-		<!-- build:app scripts/app.js -->
-        <script src="scripts/app.js"></script>
-
-		<!-- Controllers -->
-        <script src="scripts/controllers/mainController.js"></script>
-        <script src="scripts/controllers/loginController.js"></script>
-        <script src="scripts/controllers/signupController.js"></script>
-
-        <!-- Services -->
-        <script src="scripts/services/loginService.js"></script>
-        <script src="scripts/services/signupService.js"></script>
-
-        <script src="scripts/routes.js"></script>
-        <!-- endbuild -->
+    <title>VM2020</title>
 </head>
 
-<body ng-app="app">
+<body style="margin: 0;">
 	<script>
 		// You can also require other files to run in this process
 		require('./titlebar.js')
-		require('./renderer.js')
 	</script>
+    <script>
+        const ipcRenderer = require('electron').ipcRenderer;
+        // wait for an updateReady message
+        ipcRenderer.on('updateReady', function(event, text) {
+            // changes the text of the button
+            var container = document.getElementById('ready');
+            container.innerHTML = "new version ready!";
+			var update = document.getElementById('check');
+            update.innerHTML = "update download complete";
+        })
+		// wait for an updateAvailable message
+        ipcRenderer.on('updateAvailable', function(event, text) {
+            // changes the text
+            var update = document.getElementById('check');
+            update.innerHTML = "available & downloading...";
+        })
+		
+		// wait for an updateNotAvailable message
+        ipcRenderer.on('updateNotAvailable', function(event, text) {
+            // changes the text
+            var no_update = document.getElementById('check');
+            no_update.innerHTML = "no updates available";
+        })
+		
+		// Listen for messages
+		ipcRenderer.on('message', function(event, text) {
+		  var process_container = document.getElementById('messages');
+		  //var message = document.createElement('div');
+		  process_container.innerHTML = text;
+		 // container.appendChild(message);
+		})
+    </script>
+	<h1>VM2020</h1>
+	<!-- All of the Node.js APIs are available in this renderer process. -->
+    We are using Node.js <script>document.write(process.versions.node)</script>,
+    Chromium <script>document.write(process.versions.chrome)</script>,
+    and Electron <script>document.write(process.versions.electron)</script>.
+	<br><br><br>
+	<img src="https://media.tenor.com/images/d02f68f2b8785baa2e72115dec9bceed/tenor.gif"/>
+	
+    <div style="position:absolute; right:20%; bottom: 5%" id="messages"></div>
 
-<div ui-view></div>
-<x-notification id="notification" timeout="5000"></x-notification>
+	<div style="position:absolute; left:2%; bottom: 2%">
+    Version: <span id="version">v 0.3.2</span>
+	</div>
+	
+	
+	<div style="position:absolute; right:40%; bottom: 2%">
+    <span id="check">not available</span>
+	</div>
+	
+	<div style="position:absolute; right:2%; bottom: 2%">
+    <!-- the button onClick sends a quitAndInstall message to the electron main process -->
+    <button id="ready" onClick="ipcRenderer.send('quitAndInstall')">no updates</button>
+	</div>
+	
+
 </body>
 
 </html>
