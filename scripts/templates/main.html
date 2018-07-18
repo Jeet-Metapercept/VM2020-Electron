@@ -1,0 +1,25 @@
+<div class="p20">
+<h1>Update</h1>
+	<!-- All of the Node.js APIs are available in this renderer process. -->
+    We are using Node.js <script>document.write(process.versions.node)</script>,
+    Chromium <script>document.write(process.versions.chrome)</script>,
+    and Electron <script>document.write(process.versions.electron)</script>.
+	<br><br><br>
+	<img src="https://media.tenor.com/images/d02f68f2b8785baa2e72115dec9bceed/tenor.gif"/>
+	
+    <div style="position:absolute; right:20%; bottom: 5%" id="messages"></div>
+
+	<div style="position:absolute; left:2%; bottom: 2%">
+    Version: <span id="version">v 1.3.3</span>
+	</div>
+	
+	
+	<div style="position:absolute; right:40%; bottom: 2%">
+    <span id="check">not available</span>
+	</div>
+	
+	<div style="position:absolute; right:2%; bottom: 2%">
+    <!-- the button onClick sends a quitAndInstall message to the electron main process -->
+    <button id="ready" onClick="ipcRenderer.send('quitAndInstall')">no updates</button>
+	</div>
+</div>

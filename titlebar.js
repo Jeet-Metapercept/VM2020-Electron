@@ -6,7 +6,7 @@ const { BrowserWindow } = remote;
 const titlebar = new ElectronTitlebarWindows(
 		{darkMode: true,
         color: '#fff',
-        backgroundColor: 'rgb(54, 149, 252)',/* #0078d7 */
+        backgroundColor: 'rgb(210, 210, 210)',/* #0078d7 */
         draggable: true,
         fullscreen: false}
 		);
