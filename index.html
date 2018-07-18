@@ -1,7 +1,9 @@
 <html>
 
 <head>
-    <title>VM2020</title>
+    <title>Electron Updater</title>
+	<script src="node_modules/xel/xel.min.js"></script>
+	<link rel="stylesheet" href="node_modules/xel/themes/macos.css">
 </head>
 
 <body style="margin: 0;">
@@ -41,28 +43,36 @@
 		 // container.appendChild(message);
 		})
     </script>
-	<h1>VM2020</h1>
-	<!-- All of the Node.js APIs are available in this renderer process. -->
-    We are using Node.js <script>document.write(process.versions.node)</script>,
-    Chromium <script>document.write(process.versions.chrome)</script>,
-    and Electron <script>document.write(process.versions.electron)</script>.
-	<br><br><br>
-	<img src="https://media.tenor.com/images/d02f68f2b8785baa2e72115dec9bceed/tenor.gif"/>
+
+	
+	<x-card>
+	  <main>
+		<h2><strong>Electron Updater</strong></h2>
+		<!-- All of the Node.js APIs are available in this renderer process. -->
+		<p>We are using Node.js <script>document.write(process.versions.node)</script>,</p>
+		<p>Chromium <script>document.write(process.versions.chrome)</script>,</p>
+		<p>and Electron <script>document.write(process.versions.electron)</script>.</p>
+	  </main>
+	</x-card>
 	
     <div style="position:absolute; right:20%; bottom: 5%" id="messages"></div>
 
 	<div style="position:absolute; left:2%; bottom: 2%">
-    Version: <span id="version">v 0.3.4</span>
+    Version: <span id="version">v 0.3.5</span>
 	</div>
 	
 	
 	<div style="position:absolute; right:40%; bottom: 2%">
     <span id="check">not available</span>
+	<x-progressbar></x-progressbar>
 	</div>
 	
 	<div style="position:absolute; right:2%; bottom: 2%">
     <!-- the button onClick sends a quitAndInstall message to the electron main process -->
-    <button id="ready" onClick="ipcRenderer.send('quitAndInstall')">no updates</button>
+    <!-- <button id="ready" onClick="ipcRenderer.send('quitAndInstall')">no updates</button> -->
+	 <x-button id="ready" onClick="ipcRenderer.send('quitAndInstall')">
+		<x-label>no updates</x-label>
+	 </x-button>
 	</div>
 	
 

@@ -1,8 +1,8 @@
 {
-  "name": "VM2020",
-  "version": "0.3.4",
+  "name": "Electron Updater",
+  "version": "0.3.5",
   "author": "Jeet",
-  "homepage": "./",
+  "homepage": "https://github.com/Jeet-Metapercept/VM2020-Electron",
   "description": "An example of an autoupdating electron app",
   "repository": "https://github.com/Jeet-Metapercept/VM2020-Electron",
   "main": "electron.js",
